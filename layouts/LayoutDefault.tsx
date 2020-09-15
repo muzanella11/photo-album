@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { IAppProps } from './../components/app/types'
-import Link from 'next/link'
 import App from '../components/app/App'
 import Header from '../components/header/Header'
 import { IHeaderEntries } from '../components/header/types'

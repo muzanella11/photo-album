@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setEntriesFavorite } from './../../store/actions/favorite'
 import { actionMethod, FETCH_DETAIL, setEntries } from './../../store/actions/albums'
-import { LOCAL_DATA } from '../../store/actions/favorite'
+import { LOCAL_DATA } from './../../store/actions/favorite'
 
 declare let window: any
 class AlbumsDetailPage extends Component<any, any> {

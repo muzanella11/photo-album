@@ -2,7 +2,7 @@ import LayoutDefault from './../../layouts/LayoutDefault'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setEntriesFavorite } from './../../store/actions/favorite'
-import { LOCAL_DATA } from '../../store/actions/favorite'
+import { LOCAL_DATA } from './../../store/actions/favorite'
 
 declare let window: any
 
