@@ -16,7 +16,7 @@ class IndexPage extends Component<any, any> {
     super(props)
 
     if (process.browser) {
-      actionMethod[FETCH_ENTRIES]()
+      actionMethod[FETCH_ENTRIES]('')
         .then(response => {
           this.props.setEntries(response)
           this.setState({
@@ -51,37 +51,42 @@ class IndexPage extends Component<any, any> {
     return (
       <LayoutDefault title="Home | Photo Album">
         <div className="l-home container">
-          <div className="row mb-4 mt-4">
-            <div className="col-lg-12">
-              <form className="form-inline my-2 my-lg-0">
-                <input 
-                  className="form-control mr-sm-2" 
-                  type="search" 
-                  placeholder="Search" 
-                  aria-label="Search" 
-                  value={this.state.filters.key}
-                  onChange={this.onSearchChange}
-                />
-              </form>
+          {
+            !this.state.isLoading ?
+            <div className="row mt-4">
+              <div className="col-lg-12">
+                <form className="form-inline my-2 my-lg-0">
+                  <input 
+                    className="form-control mr-sm-2" 
+                    type="search" 
+                    placeholder="Search" 
+                    aria-label="Search" 
+                    value={this.state.filters.key}
+                    onChange={this.onSearchChange}
+                  />
+                </form>
+              </div>
             </div>
-          </div>
+            : ''
+          }
 
-          <div className="row">
+          <div className="row mt-4">
             { 
               this.entries.length > 0 ? 
               this.entries.map((item: any, index: any) => (
                 <div key={index} className="col-lg-3 mb-4">
                   <div className="card">
-                    <img className="card-img-top" src={this.thumbnailCard(item)} alt={item.title} />
-                    <div className="card-body">
-                      <h5 className="card-title">{ item.title }</h5>
-                      <div className="row mb-2">
-                        <div className="col-lg-12">
-                          <span>{ item.userDetail.username }</span>
+                    <a href={`/albums/${item.id}`}>
+                      <img className="card-img-top" src={this.thumbnailCard(item)} alt={item.title} />
+                      <div className="card-body">
+                        <h5 className="card-title">{ item.title }</h5>
+                        <div className="row mb-2">
+                          <div className="col-lg-12">
+                            <span>{ item.userDetail.username }</span>
+                          </div>
                         </div>
                       </div>
-                      <a href="#" className="btn btn-primary">Love</a>
-                    </div>
+                    </a>
                   </div>
                 </div>
                 )
