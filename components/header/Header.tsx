@@ -39,7 +39,7 @@ class Header extends Component<IHeaderProps, IHeaderState> {
               : ''
             }
 
-            <NavDropdown title="Anu Gemas" id="accountDropdownMobile" className="d-block d-md-none">
+            <NavDropdown title="Mark Otto" id="accountDropdownMobile" className="d-block d-md-none">
               { 
                 this.state.accountMenus && this.state.accountMenus.length > 0 
                 ? this.state.accountMenus.map((item, index) => 
@@ -52,7 +52,7 @@ class Header extends Component<IHeaderProps, IHeaderState> {
         </Navbar.Collapse>
 
         <Navbar.Collapse className="justify-content-end d-none d-md-none">
-          <NavDropdown title="Anu Gemas" id="accountDropdown" className="header__account">
+          <NavDropdown title="Mark Otto" id="accountDropdown" className="header__account">
             {
               this.state.accountMenus && this.state.accountMenus.length > 0 
               ? this.state.accountMenus.map((item, index) => 
