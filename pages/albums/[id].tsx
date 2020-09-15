@@ -1,10 +1,10 @@
-import LayoutDefault from './../layouts/LayoutDefault'
+import LayoutDefault from './../../layouts/LayoutDefault'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { setCounter, decrementCounter, incrementCounter } from './../store/actions/counter'
-import { actionMethod, FETCH_ENTRIES, setEntries } from './../store/actions/albums'
+import { setCounter, decrementCounter, incrementCounter } from './../../store/actions/counter'
+import { actionMethod, FETCH_ENTRIES, setEntries } from './../../store/actions/albums'
 
-class IndexPage extends Component<any, any> {
+class AlbumsDetailPage extends Component<any, any> {
   state = {
     isLoading: true,
     filters: {
@@ -107,4 +107,4 @@ const mapDispatchToProps = {
   setEntries: setEntries
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(IndexPage)
+export default connect(mapStateToProps, mapDispatchToProps)(AlbumsDetailPage)

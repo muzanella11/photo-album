@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import Link from 'next/link'
 import Head from 'next/head'
 import { IAppProps } from './types'
 
-class App extends Component<IAppProps> {
-  constructor (props: IAppProps) {
+class App extends Component<IAppProps | any> {
+  constructor (props: IAppProps | any) {
     super(props)
   }
 
