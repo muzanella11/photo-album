@@ -82,7 +82,9 @@ class IndexPage extends Component<any, any> {
                         <h5 className="card-title">{ item.title }</h5>
                         <div className="row mb-2">
                           <div className="col-lg-12">
-                            <span>{ item.userDetail.username }</span>
+                            <a href={`/${item.userDetail.id}`}>
+                              <span>{ item.userDetail.username }</span>
+                            </a>
                           </div>
                         </div>
                       </div>

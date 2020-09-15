@@ -14,7 +14,7 @@ class Header extends Component<IHeaderProps, IHeaderState> {
       {
         name: 'profile',
         label: 'Profile',
-        url: '/profile'
+        url: '/1'
       },
       {
         name: 'favorite',

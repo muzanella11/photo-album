@@ -36,10 +36,6 @@ class ProfileDetailPage extends Component<any, any> {
   }
 
   componentDidMount () {
-    this.setState({
-      isLoading: false
-    })
-
     const localData = JSON.parse(window.localStorage.getItem(LOCAL_DATA)) || []
 
     this.props.setEntriesFavorite(localData)
@@ -97,54 +93,69 @@ class ProfileDetailPage extends Component<any, any> {
   }
 
   getAddress (item: any) {
-    delete item.geo
+    const rawData = item || {}
 
-    return Object.keys(item).map(key => `${key}: ${item[key]}`).join(', ')
+    if (rawData.geo) {
+      delete rawData.geo
+    }
+
+    return Object.keys(rawData).map(key => `${key}: ${rawData[key]}`).join(', ')
   }
 
   render () {
     return (
-      <LayoutDefault title={`${this.entries?.title} | Photo Album`}>
+      <LayoutDefault title={`${this.entries?.userDetail.name} | Photo Album`}>
         <div className="l-home container">
-          <div className="row mb-4 mt-4">
-            <div className="col-lg-12">
-              <h2>
-                { this.entries?.userDetail.name }
-              </h2>
-              <h3>
-                { this.entries?.userDetail.username }
-              </h3>
+          {
+            this.entries?.userDetail.name ?
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="row mb-4 mt-4">
+                  <div className="col-lg-12">
+                    <h2>
+                      { this.entries?.userDetail.name }
+                    </h2>
+                    <h3>
+                      { this.entries?.userDetail.username }
+                    </h3>
 
-              <hr />
+                    <hr />
 
-              <p>
-                { this.entries?.userDetail.email } <br />
-                {
-                  this.getAddress(this.entries?.userDetail.address)
-                } <br />
-                Company : { this.entries?.userDetail.company.name }
-              </p>
-            </div>
-          </div>
-
-          <div className="row mb-4 mt-4">
-            { 
-              this.entriesPhotos.length > 0 ? 
-              this.entriesPhotos.map((item: any, index: any) => (
-                <div key={index} className="col-lg-3 mb-4">
-                  <div className="card">
-                    <img className="card-img-top" src={this.thumbnailCard(item)} alt={item.title} />
-                    <div className="card-body">
-                      <h5 className="card-title">{ item.title }</h5>
-                      <button className="btn btn-primary" onClick={ () => { this.isFavorite(item) ? this.handlerUnfavorite(item) : this.handlerFavorite(item) } }>{ this.isFavorite(item) ? 'Unlove' : 'Love' }</button>
-                    </div>
+                    <p>
+                      { this.entries?.userDetail.email } <br />
+                      {
+                        this.getAddress(this.entries?.userDetail.address)
+                      } <br />
+                      Company : { this.entries?.userDetail.company.name }
+                    </p>
                   </div>
                 </div>
-                )
-              ) 
-              : <div className="col-lg-12">{this.state.isLoading ? 'Loading' : 'No Data'}</div>
-            }
-          </div>
+
+                <div className="row mb-4 mt-4">
+                { 
+                  this.entriesPhotos.length > 0 ? 
+                  this.entriesPhotos.map((item: any, index: any) => (
+                    <div key={index} className="col-lg-3 mb-4">
+                      <div className="card">
+                        <img className="card-img-top" src={this.thumbnailCard(item)} alt={item.title} />
+                        <div className="card-body">
+                          <h5 className="card-title">{ item.title }</h5>
+                          <button className="btn btn-primary" onClick={ () => { this.isFavorite(item) ? this.handlerUnfavorite(item) : this.handlerFavorite(item) } }>{ this.isFavorite(item) ? 'Unlove' : 'Love' }</button>
+                        </div>
+                      </div>
+                    </div>
+                    )
+                  ) 
+                  : <div className="col-lg-12">{this.state.isLoading ? 'Loading' : 'No Data'}</div>
+                }
+                </div>
+              </div>
+            </div>
+            : 
+            <div className="row mt-4">
+              <div className="col-lg-12">{this.state.isLoading ? 'Loading' : 'No Data'}</div>
+            </div>
+          }
         </div>
       </LayoutDefault>
     )
